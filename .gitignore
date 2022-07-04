@@ -1,4 +1,4 @@
 concurrent.iml
 pom.xml
-.idea
-target
+.idea/
+target/
