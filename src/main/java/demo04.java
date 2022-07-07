@@ -1,5 +1,10 @@
 import lombok.extern.slf4j.Slf4j;
-
+/*
+ synchronized(对象) // 线程1， 线程2(blocked)
+ {
+   临界区
+}
+ */
 @Slf4j
 public class demo04 {
     static int count = 0;
@@ -8,7 +13,7 @@ public class demo04 {
         final room room = new room();
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 5000; i++) {
-                synchronized (lock) {
+                synchronized (room) {
                 count++;
                 }
                 room.increment();
@@ -18,7 +23,7 @@ public class demo04 {
         }, "t1");
         Thread t2 = new Thread(() -> {
             for (int i = 0; i < 5000; i++) {
-                synchronized (lock) {
+                synchronized (room) {
                     count--;
                 }
                 room.decrement();
