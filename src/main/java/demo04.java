@@ -14,7 +14,10 @@ public class demo04 {
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 5000; i++) {
                 synchronized (room) {
-                count++;
+                    synchronized (room) {
+                    // 锁的重入
+                        count++;
+                    }
                 }
                 room.increment();
                 room.increment2();
