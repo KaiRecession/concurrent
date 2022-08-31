@@ -5,10 +5,8 @@ import java.util.*;
 
 class Solution {
     public static void main(String[] args) {
-        final Solution solution = new Solution();
-        int[][] item1 = new int[][] {{15,5},{2,6},{5,3},{14,8},{12,4},{19,6},{25,4},{13,4},{9,1}};
-        int[][] item2 = new int[][] {{15,9},{2,4},{5,2},{14,4},{12,3},{19,1},{25,7},{13,6},{9,9}};
-        solution.mergeSimilarItems(item1, item2);
+        System.out.println(1 << 10);
+        var s = 1;
     }
     public List<List<Integer>> mergeSimilarItems(int[][] items1, int[][] items2) {
         Map<Integer, Integer> value_weight = new HashMap();

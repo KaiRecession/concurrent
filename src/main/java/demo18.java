@@ -1,3 +1,8 @@
+/**
+ * 测试submit的任务提交方法
+ * 测试future的对象使用
+ */
+
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutionException;
@@ -21,9 +26,11 @@ public class demo18 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            log.debug("return");
             return "OK";
         });
 
         log.debug("{}", future.get());
+        System.out.println("wait finished");
     }
 }
