@@ -1,7 +1,8 @@
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class demo06 {
+public class
+demo06 {
     public static void main(String[] args) throws InterruptedException {
         final Thread t1 = new Thread(() -> {
             final Thread current = Thread.currentThread();
