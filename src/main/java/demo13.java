@@ -10,8 +10,6 @@ public class demo13 implements Account{
 
     }
 
-
-
     public static void main(String[] args) {
 
         LinkedList<demo13> ints = new LinkedList();

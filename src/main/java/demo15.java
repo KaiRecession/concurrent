@@ -182,12 +182,14 @@ class ThreadPool {
 
     public void execute(Runnable task) {
         synchronized (workers) {
+            // 当线程小于核心线程的时候新建work线程执行任务
             if (workers.size() < coreSize) {
                 Worker worker = new Worker(task);
                 log.debug("新增worker{}, {}", worker, task);
                 workers.add(worker);
                 worker.start();
             } else {
+                // 当线程大于核心线程的时候交给队列，rejectPolicy有很多种方式，可以使用这个，也可以使用put阻塞的策略
                 taskQueue.tryPut(rejectPolicy, task);
             }
         }
@@ -211,6 +213,7 @@ class ThreadPool {
 
         @Override
         public void run() {
+            // work首次初始化自带一个task，所以条件要判断一下task是否为null，跑完设置为null
             // 循环一致跑程序，跑task而已
             while (task != null || (task = taskQueue.poll(timeout, timeUnit)) != null) {
                 try {
@@ -222,6 +225,7 @@ class ThreadPool {
                     task = null;
                 }
             }
+            // 当发生异常的时候就跳出循环，删除线程对象
             synchronized (workers) {
                 log.debug("worker被移除{}", this);
                 workers.remove(this);
